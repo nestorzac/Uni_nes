@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlatformInstantiate : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> platforms;
+    private List <GameObject> platforms;
     [SerializeField]
     private Transform platformsPosition;
     [SerializeField]
@@ -24,11 +24,20 @@ public class PlatformInstantiate : MonoBehaviour
             int randomIndex = Random.Range(0, platforms.Count);
             if (offsetPositionX != 0)
             {
-                offsetPositionX += platforms[randomIndex].GetComponent<BoxCollider>().size.x * 05f;
+                offsetPositionX += platforms[randomIndex].GetComponent<BoxCollider>().size.x * 0.5f;
             }
             GameObject platform = Instantiate(platforms[randomIndex], new Vector3(offsetPositionX, platformsPosition.position.y, platformsPosition.position.z), Quaternion.identity);
             offsetPositionX += distanceBetweenPlataforms + platform.GetComponent<BoxCollider>().size.x * 0.5f;
             platform.transform.SetParent(transform);
         }
+    }
+
+    public void Restart()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+        Start();
     }
 }

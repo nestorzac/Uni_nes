@@ -17,10 +17,17 @@ public class Jump : MonoBehaviour
     private float jumpTimeCounter;
     private bool buttonPressed;
 
+    private bool canJump = true;
+
     
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+    }
+
+    public void SetCanJump(bool value)
+    {
+        canJump = value;
     }
     private void ResetartJumps()
     {
